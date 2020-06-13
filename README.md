@@ -2,13 +2,9 @@
 
 University of Washington
 
-CSE 573 Artificial Intelligence I
+CSE 573 Artificial Intelligence I - Winter 2020
 
-Winter 2020
-
-This contains Pac-Man projects which were adopted from UC Berkeley's introductory artificial intelligence class, CS 188. 
-
-This project explores several techniques of Artificial Intelligence such as Searching, Heuristics, Adversarial Behaviour, Reinforcement Learning etc.
+This contains Pac-Man projects which were adopted from UC Berkeley's introductory artificial intelligence class, CS 188. It explores several techniques of Artificial Intelligence such as Searching, Heuristics, Adversarial Behaviour, Reinforcement Learning etc.
 
 Project 1: Search - DFS, BFS, UCS, Greedy Search, A* Search
 
