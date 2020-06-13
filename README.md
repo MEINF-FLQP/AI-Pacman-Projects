@@ -1,4 +1,4 @@
-# AI-Pacman-Projects
+# Aritificial Intelligence: Pacman Projects
 
 University of Washington
 
