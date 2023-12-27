@@ -122,7 +122,6 @@ class QLearningAgent(ReinforcementAgent):
             return self.computeActionFromQValues(state)
         #for terminal state
         return action
-        util.raiseNotDefined()
 
         return action
 

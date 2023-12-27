@@ -152,83 +152,8 @@ class MultiAgentSearchAgent(Agent):
         self.evaluationFunction = util.lookup(evalFn, globals())
         self.depth = int(depth)
 
-class MinimaxAgent(MultiAgentSearchAgent):
-    """
-    Your minimax agent (question 2)
-    """
 
 
-    def getAction(self, gameState):
-        """
-        Returns the minimax action from the current gameState using self.depth
-        and self.evaluationFunction.
-
-        Here are some method calls that might be useful when implementing minimax.
-
-        gameState.getLegalActions(agentIndex):
-        Returns a list of legal actions for an agent
-        agentIndex=0 means Pacman, ghosts are >= 1
-
-        gameState.generateSuccessor(agentIndex, action):
-        Returns the successor game state after an agent takes an action
-
-        gameState.getNumAgents():
-        Returns the total number of agents in the game
-
-        gameState.isWin():
-        Returns whether or not the game state is a winning state
-
-        gameState.isLose():
-        Returns whether or not the game state is a losing state
-        """
-        "*** YOUR CODE HERE ***"
-        #for minmax
-        #minimum value function
-        def minValue(state, agentIndex, depth):
-            #information about the agent count and the legal actions for the index
-            agentCount = gameState.getNumAgents()
-            legalActions = state.getLegalActions(agentIndex)
-
-            #if no legal actions then return the evaluation function
-            if not legalActions:
-                return self.evaluationFunction(state)
-
-            # pacman is the last to move after all ghost movement
-            if agentIndex == agentCount - 1:
-                minimumValue =  min(maxValue(state.generateSuccessor(agentIndex, action), \
-                agentIndex,  depth) for action in legalActions)
-            else:
-                minimumValue = min(minValue(state.generateSuccessor(agentIndex, action), \
-                agentIndex + 1, depth) for action in legalActions)
-
-            return minimumValue
-
-        #maximum value function used for only pacman and hence setting index to 0
-        def maxValue(state, agentIndex, depth):
-            #information about the agent index and the legal actions for the index
-            agentIndex = 0
-            legalActions = state.getLegalActions(agentIndex)
-
-            #if no legal actions or depth reached(prevent maximum depth
-            #exceeded in recursion)then return the evaluation function
-            if not legalActions  or depth == self.depth:
-                return self.evaluationFunction(state)
-
-            maximumValue =  max(minValue(state.generateSuccessor(agentIndex, action), \
-            agentIndex + 1, depth + 1) for action in legalActions)
-
-            return maximumValue
-
-        #maximizing the best possible moves for the rootnode i.e.
-        #the pacman thus agent index 0
-        actions = gameState.getLegalActions(0)
-        #find all actions and the corresponding value and then return action
-        #corresponding to the maximum value
-        allActions = {}
-        for action in actions:
-            allActions[action] = minValue(gameState.generateSuccessor(0, action), 1, 1)
-
-        return max(allActions, key=allActions.get)
 
         util.raiseNotDefined()
 
