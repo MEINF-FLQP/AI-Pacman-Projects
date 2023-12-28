@@ -1,4 +1,4 @@
-class: "AsynchronousValueIterationTest"
+class: "EpsilonGreedyTest"
 
 # GridWorld specification
 #    _ is empty space
@@ -7,9 +7,13 @@ class: "AsynchronousValueIterationTest"
 #    S is a start state
 #
 grid: """
-    # -100 -100 -100 -100 -100    #
-    1    S    _    _    _    _   10
-    # -100 -100 -100 -100 -100    #
+    #   10    #
+ -100    _ -100
+ -100    _ -100
+ -100    _ -100
+ -100    _ -100
+ -100    S -100
+    #    1    #
 """
 gridName: "bridgeGrid"
 discount: "0.85"
@@ -18,7 +22,6 @@ livingReward: "0.0"
 epsilon: "0.5"
 learningRate: "0.1"
 numExperiences: "500"
-valueIterations: "1000"
+valueIterations: "100"
 iterations: "10000"
-
 
