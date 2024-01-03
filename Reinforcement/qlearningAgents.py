@@ -12,11 +12,10 @@
 # Pieter Abbeel (pabbeel@cs.berkeley.edu).
 
 
-from game import *
-from learningAgents import ReinforcementAgent
-from featureExtractors import *
+import random
+import util
 
-import random, util, math
+from learningAgents import ReinforcementAgent
 
 
 class QLearningAgent(ReinforcementAgent):
@@ -54,7 +53,7 @@ class QLearningAgent(ReinforcementAgent):
           or the Q node value otherwise
         """
         "*** YOUR CODE HERE ***"
-        return (self.qValues[(state, action)])
+        return self.qValues[(state, action)]
 
     def computeValueFromQValues(self, state):
         """
@@ -70,8 +69,6 @@ class QLearningAgent(ReinforcementAgent):
             return 0.0
         return max(qvalues)
 
-        util.raiseNotDefined()
-
     def computeActionFromQValues(self, state):
         """
           Compute the best action to take in a state.  Note that if there
@@ -81,6 +78,7 @@ class QLearningAgent(ReinforcementAgent):
         "*** YOUR CODE HERE ***"
         legalActions = self.getLegalActions(state)
         actions = []
+
         if len(legalActions) == 0:
             return None
 
@@ -89,7 +87,7 @@ class QLearningAgent(ReinforcementAgent):
         for action in legalActions:
             if value == self.getQValue(state, action):
                 actions.append(action)
-        return (random.choice(actions))
+        return random.choice(actions)
 
     def getAction(self, state):
         """
@@ -103,6 +101,7 @@ class QLearningAgent(ReinforcementAgent):
           HINT: To pick randomly from a list, use random.choice(list)
         """
         legalActions = self.getLegalActions(state)
+        "*** YOUR CODE HERE ***"
 
         if util.flipCoin(self.epsilon):
             return random.choice(legalActions)
@@ -119,7 +118,6 @@ class QLearningAgent(ReinforcementAgent):
           it will be called on your behalf
         """
         "*** YOUR CODE HERE ***"
-
         self.qValues[(state, action)] = (1 - self.alpha) * self.getQValue(state, action) + self.alpha * (reward + self.discount * self.computeValueFromQValues(nextState))
 
     def getPolicy(self, state):
@@ -184,6 +182,7 @@ class ApproximateQAgent(PacmanQAgent):
           where * is the dotProduct operator
         """
         "*** YOUR CODE HERE ***"
+        # get weights and feature
         weight = self.getWeights()
         featureVector = self.featExtractor.getFeatures(state, action)
 
@@ -204,4 +203,5 @@ class ApproximateQAgent(PacmanQAgent):
         PacmanQAgent.final(self, state)
 
         if self.episodesSoFar == self.numTraining:
+            "*** YOUR CODE HERE ***"
             pass
